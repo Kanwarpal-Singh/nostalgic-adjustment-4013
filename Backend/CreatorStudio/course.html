@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creator Studio</title>
+</head>
+
+<body>
+  <form action="http://localhost:1000/api/upload" method="POST" id="form" enctype="multipart/form-data">
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title">
+
+    <label for="course">Course:</label>
+        <select name="course" id="course">
+            <option value="choose">choose</option>
+            <option value="Data Analyst">Data Analyst</option>
+            <option value="Full Stock Web-Development">Full Stock Web-Development</option>
+            <option value="Networking">Networking</option>
+            <option value="Database Engineering">Database Engineering</option>
+            <option value="Frontend Frameworks">Frontend Frameworks</option>
+        </select>
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description"></textarea>
+
+    <label for="language">Language:</label>
+    <input type="text" name="language" id="language">
+
+    <label for="video">Video:</label>
+    <input type="file" name="video" id="video">
+
+    <button type="submit">submit</button>
+  </form>
+</body>
+
+<script >
+  let creatorId = "1" // Replace it with the data of local storage
+  let creatorName = "dummy" // Replace it with the data of local storage
+  let form = document.getElementById('form')
+  let title = document.getElementById("title")
+  let description = document.getElementById("description")
+  let video = document.getElementById("video")
+  let course = document.getElementById("course")
+  let language = document.getElementById("language")
+
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+
+    const formData = new FormData()
+    formData.append("title", title.value)
+    formData.append("description", description.value)
+    formData.append("video", video.files[0])
+    formData.append("language", language.value)
+    formData.append("course", course.value)
+    formData.append("creatorId", creatorId)
+    formData.append("creatorName", creatorName)
+
+    console.log(formData)
+
+    fetch('http://localhost:1000/api/upload', {
+      method: 'POST',
+      body: formData
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      })
+      .catch(function (error) {
+        console.log('Error', error);
+      });
+  });
+</script>
+
+</html>
