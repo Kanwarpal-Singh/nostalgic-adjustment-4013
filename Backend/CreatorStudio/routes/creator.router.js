@@ -26,62 +26,53 @@ const s3 = new S3Client({          // Setting the credential of aws
     }
 })
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage })
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage: storage })
+const upload = multer();
 
 creatorRouter.get("/creator", (req, res) => {
-    res.sendFile(path.join(__dirname, "./../course.html" ))  // Sending the course form
+    res.sendFile(path.join(__dirname, "./../course.html"))  // Sending the course form
 });
 
-creatorRouter.get("/getcourse/:id", async(req,res) => {
-    const {id} = req.params
-    try{
-        const courseExists = await CourseModel.findOne({creatorId: id});
-        if(!courseExists) return res.status(404).json({ message: "Course not found" });
+creatorRouter.get("/getcourse/:id", async (req, res) => {
+    const { id } = req.params
+    try {
+        const courseExists = await CourseModel.findOne({ creatorId: id });
+        if (!courseExists) return res.status(404).json({ message: "Course not found" });
 
         res.status(200).json(courseExists)
     }
-    catch(err){
+    catch (err) {
         console.log(err);
-        res.status(500).send({"error":"Something went wrong"});
+        res.status(500).send({ "error": "Something went wrong" });
     }
 });
 
-creatorRouter.post('/upload', upload.single('video'), async function (req, res, next) {
+creatorRouter.post('/upload', upload.fields([{ name: 'image' }, { name: 'video' }]), async function (req, res, next) {
 
-    const {title, description, language, course, creatorId, creatorName} = req.body
+    const { title, description, language, course, creatorId, creatorName } = req.body
 
     try {
+        
+        const videoFile = req.files['video'][0];                    // Extract the uploaded video file from the request through frontend
+        const videoName = 'videos/' + videoFile.originalname        // storing original file name
+        const videoUrl = await handleAwsStore(videoFile, videoName) // storing file and generating the url with expirable lifetime
 
-        const fileName = req.file.originalname  // storing original file name
-        const params = {                        // setting params of putobject
-            Bucket: bucket,
-            Key: fileName,
-            Body: req.file.buffer,
-            ContentType: req.file.mimetype
-        }
+        const imageFile = req.files['image'][0];                    // Extract the uploaded image file from the request through frontend
+        const thumbnailName = 'images/' + imageFile.originalname    // storing original file name
+        const thumbnailURL = await handleAwsStore(imageFile, thumbnailName) // storing file and generating the url with expirable lifetime
 
-        const command = new PutObjectCommand(params)  
-
-        await s3.send(command);                 // Sending the put command to s3 buckt
-
-        getObjectParams = {                     // Params to get the file:object from s3
-            Bucket: bucket,
-            Key: fileName,
-        }
-
-        const getCommand = new GetObjectCommand(getObjectParams);   // Creating get command
-        const url = await getSignedUrl(s3, getCommand, { expiresIn: 3600 * expiry });  // generating the url with epirable lifetime
-
-        const content = [{                      // creating videoInfo object
-            videoname:fileName,
-            videourl:url
+        const content = [{                                          // creating videoInfo object
+            videoName: videoName,
+            videoUrl: videoUrl,
+            thumbnailName: thumbnailName,
+            thumbnailURL: thumbnailURL
         }]
 
-        const addCourse = new CourseModel({title, description, language, course, creatorId, creatorName, content});
+        const addCourse = new CourseModel({ title, description, language, course, creatorId, creatorName, content });
         await addCourse.save();
 
-        res.json({ message: 'Successfully Added Course'})
+        res.json({ message: 'Successfully Added Course' })
 
     }
     catch (err) {
@@ -92,6 +83,29 @@ creatorRouter.post('/upload', upload.single('video'), async function (req, res, 
 
 });
 
+async function handleAwsStore(file, name) {
+    const Params = {                        // setting params of putobject
+        Bucket: bucket,
+        Key: name,
+        Body: file.buffer,
+        ContentType: file.mimetype
+    }
+
+    const Command = new PutObjectCommand(Params)
+
+    await s3.send(Command);                 // Sending the put Command to s3 buckt
+
+    getObjectParams = {                     // Params to get the file:object from s3
+        Bucket: bucket,
+        Key: name,
+    }
+
+    const getCommand = new GetObjectCommand(getObjectParams);   // Creating get command
+    const url = await getSignedUrl(s3, getCommand, { expiresIn: 3600 * expiry });  // generating the url with expirable lifetime
+    // console.log(url)
+    return url;
+}
+
 creatorRouter.delete("/deletecourse/:id", async (req, res) => {
     const { id } = req.params
     try {
@@ -99,16 +113,11 @@ creatorRouter.delete("/deletecourse/:id", async (req, res) => {
         if (!course) return res.status(404).json({ message: "Course not found" });
 
         for (let item of course.content) {
-            const deleteParams = {                  // creating the delete params
-                Bucket: bucket,
-                Key: item.videoname,                // name of the file to be deleted
-            }
-            const deleteCommand = new DeleteObjectCommand(deleteParams) // generating delete command
-
-            await s3.send(deleteCommand);  // sending the delete request to s3
+            deleteFromAws(item.videoName);
+            deleteFromAws(item.thumbnailName);
         }
 
-        await CourseModel.findOneAndDelete({creatorId: id});
+        await CourseModel.findOneAndDelete({ creatorId: id });
         res.json({ message: 'Successfully Deleted', course })
     } catch (error) {
         console.log(error);
@@ -116,6 +125,16 @@ creatorRouter.delete("/deletecourse/:id", async (req, res) => {
     }
 })
 
-module.exports= {
+async function deleteFromAws(name) {
+    const deleteParams = {                  // creating the delete params
+        Bucket: bucket,
+        Key: name,                          // name of the file to be deleted
+    }
+    const deleteCommand = new DeleteObjectCommand(deleteParams) // generating delete command
+
+    await s3.send(deleteCommand);           // sending the delete request to s3
+}
+
+module.exports = {
     creatorRouter
 }
