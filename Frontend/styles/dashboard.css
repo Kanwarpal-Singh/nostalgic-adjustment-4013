@@ -152,6 +152,9 @@ main .container .left .profile{
     background: var(--color-white);
     border-radius: var(--card-border-radius);
 }
+.sidebar{
+    width:200px
+}
 
 .left .sidebar .menu-item{
     display: flex;
@@ -214,9 +217,14 @@ main .container .left .profile{
 
 .left .btn{
     margin-top: 1rem;
-    width: 100%;
+    width:100%;
     text-align: center;
-    padding: 1rem 0;
+    padding:0.7rem ;
+
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1rem;
+
 }
 
 
