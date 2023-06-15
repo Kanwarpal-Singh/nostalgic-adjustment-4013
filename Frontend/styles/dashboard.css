@@ -85,6 +85,7 @@ nav{
     padding: 0.7rem 0;
     position: fixed;
     top: 0;
+   
     z-index: 10;
 }
 
@@ -117,6 +118,7 @@ nav .create{
     align-items: center;
     gap:2rem;
 }
+
 
 
 /*Main*/
@@ -262,3 +264,52 @@ main .container .left .profile{
 
 /*Main*/
 
+.middle{
+   
+    width:50rem;
+}
+.middle>video{
+    width: 50%;
+    margin:auto 5rem auto 12rem;
+}
+
+.middle > .caption{
+    font-size:1.3rem;
+    font-weight: 500;
+    background: var(--color-white);
+    margin-bottom: 2rem;
+}
+
+
+.middle>.studio-details {
+  
+    width: 100%;
+    margin: auto;
+    background-color: #f5f5f5;
+  }
+  
+  .text-container {
+    background-color: #1c2b33 !important;
+  }
+  
+  .text-container > div {
+    width: 80%;
+    margin: auto;
+    padding:var(--card-padding);
+    color: white;
+    text-align: start;
+    /* border: 2px solid white; */
+  }
+  
+  .li-container {
+    margin: auto;
+    width: 80%;
+    margin-top: 50px;
+    padding-bottom: 70px;
+    background-color: var(--color-white);
+  }
+  .li-container > li {
+    line-height: 40px;
+    color: #1c1b1b;
+    list-style:inside;
+  }
