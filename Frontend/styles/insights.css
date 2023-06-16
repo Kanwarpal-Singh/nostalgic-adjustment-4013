@@ -1,0 +1,5 @@
+.sidebar ul li:nth-child(2){
+    background-color: #5042e7; 
+    color: #fff;
+    border-radius: 5px;
+}
