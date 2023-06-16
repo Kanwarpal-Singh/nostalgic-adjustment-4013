@@ -179,7 +179,7 @@
 <body>
   <div class="upload-form">
     <h2 id="form-header">Create Course</h2>
-    <form action="http://localhost:1000/api/upload" method="POST" id="form-upload-form" enctype="multipart/form-data">
+    <form action="htt://13.233.69.180:3000/api/upload" method="POST" id="form-upload-form" enctype="multipart/form-data">
 
       <div class="form-item">
         <label for="title">Title:</label>
@@ -254,7 +254,8 @@
   let video = document.getElementById("video")
   let thumbnail = document.getElementById("thumbnail")
   let course = document.getElementById("course")
-  let language = document.getElementById("language")
+  let language = document.getElementById("language"),
+  imagesTypes = ["image/jpeg", "image/png", "image/jpg"]
 
 
   video.addEventListener("change", () => {
@@ -263,7 +264,7 @@
   })
 
   thumbnail.addEventListener("change", () => {
-    if (thumbnail.files[0].type !== "image/jpeg") return alert("Thumbnail must be an Image")
+    if (!imagesTypes.includes(thumbnail.files[0].type)) return alert("Thumbnail must be an Image")
     alert("Uploaded")
   })
 
@@ -284,12 +285,12 @@
     console.log(video.files[0].type)
 
     if (video.files[0].type !== "video/mp4") return alert("Please provide video at video sections")
-    if (thumbnail.files[0].type !== "image/jpeg") return alert("Thumbnail must be an Image")
+    if (!imagesTypes.includes(thumbnail.files[0].type)) return alert("Thumbnail must be an Image")
 
 
     // console.log(formData, form.elements['video'].files[0], form.elements['image'].files[0])
 
-    fetch('htt://localhost:1000/api/upload', {
+    fetch('htt://13.233.69.180:3000/api/upload', {
       method: 'POST',
       body: formData
     })
@@ -298,6 +299,7 @@
       })
       .then(function (data) {
         console.log(data);
+        form.reset()
       })
       .catch(function (error) {
         console.log('Error', error);
