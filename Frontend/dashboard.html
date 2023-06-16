@@ -1,132 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link rel="stylesheet" href="styles/dashboard.css">
-    <title>Dashboard</title>
+
+    <!----======== link the CSS file here ======== -->
+    <link rel="stylesheet" href="./styles/commonDashboard.css">
+    <link rel="stylesheet" href="./styles/insights.css">
+
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Dashboard Page</title>
 </head>
+
 <body>
-    <nav>
-        <div class="container">
-           <div  class="logo">
-            <img style="height: 8vh;" src="./images/CourseCraft.png" alt="CourseCraft">
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="image/SHORTS.png" alt="">
+                </span>
 
-           </div>
-           <div class="search-bar">
-            <i class="uil uil-search"></i>
-            <input type="search" placeholder="Search for content,..." id="searchbar">
-           </div>
-           <div class="create">
-            <label class="btn btn-primary" for="#create-post">Create</label>
-
-            <div class="profile-picture">
-                <img src="https://img.icons8.com/?size=1x&id=21832&format=png" id="profile" alt="profile">
+                <div class="text logo-text">
+                    <span class="name">Course Craft</span>
+                    <span class="profession">Insights</span>
+                </div>
             </div>
-           </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="index.html">
+                            <!-- <i class='bx bx-home-alt icon' ></i> -->
+                            <i class="fa-solid fa-house icon"></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="insights.html">
+                            <!-- <i class='bx bx-bar-chart-alt-2 icon' ></i> -->
+                            <i class="fas fa-chart-bar icon"></i>
+                            <span class="text nav-text">Insights</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="creatorstudio.html">
+                            <!-- <i class='bx bx-bell icon'></i> -->
+                            <i class="fas fa-palette icon"></i>
+                            <span class="text nav-text">Creator Studio</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <!-- <i class='bx bx-pie-chart-alt icon' ></i> -->
+                            <i class="fas fa-envelope icon"></i>
+                            <span class="text nav-text">Messages</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <!-- <i class='bx bx-pie-chart-alt icon' ></i> -->
+                            <i class="fas fa-bell icon"></i>
+                            <span class="text nav-text">Notifications</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <!-- <i class='bx bx-pie-chart-alt icon' ></i> -->
+                            <i class="fas fa-user icon"></i>
+                            <span class="text nav-text">Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="">
+                        <!-- <i class='bx bx-log-out icon' ></i> -->
+                        <i id="onclickk" class="fa-solid fa-right-from-bracket fa-rotate-180 icon"></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+
+            </div>
         </div>
+
     </nav>
 
-    <!------------------------------main section-------------------------------->
-    
-
-    <main>
-        <div class="container">
-            <div class="left">
-           <!------------------------------left section-------------------------------->
-           <a  class="profile">
-            <div class="profile-picture">
-                <img src="https://img.icons8.com/?size=1x&id=21832&format=png"  alt="profile">
-            </div>
-            <div class="handle">
-                <h4>username</h4>
-                <p class="text-muted">
-                   designation
-                </p>
-    
-            </div>
-                 
-           </a>
-           <div class="sidebar">
-            <a  class="menu-item active">
-                <span><i class="uil uil-home"></i></span> <h3>Home</h3>
-                </a>
-                <a class="menu-item">
-                <span><i class="uil uil-compass"></i></span> <h3>Explore</h3>
-                </a>
-                <a class="menu-item">
-                            <span><i class="uil uil-heart"></i></span> <h3>Features</h3>
-                            </a>
-              <a class="menu-item">
-                <span><i class="uil uil-bell"></i></span> <h3>Notifications</h3>
-                </a>
-                <a class="menu-item">
-                <span><i class="uil uil-message"></i></span> <h3>Messages</h3>
-                </a>
-               
-              <a class="menu-item">
-                <span><i class="uil uil-bookmark"></i></span> <h3>Bookmarks</h3>
-            </a>
-            <a class="menu-item">
-                <span><i class="uil uil-palette"></i></span> <h3>Theme</h3>
-            </a>
-            <a class="menu-item">
-                        <span><i class="uil uil-setting"></i></span> <h3>Settings</h3>
-            </a>
-               
-            
-           </div>
-           <label for="create-post" class="btn btn-primary">Create</label>
-            </div>
-           
-            <div class="middle">
-
-
-
-                <video autoplay muted controls preload="metadata" loop>
-                    <source src="Videos/This_is_it.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
-                  <p class="caption">We’re excited to share that creators all over the world now have access to the new CourseCraft site! The site is designed to work together with Creators, where you can manage your content, track performance and connect with your audiences</p>
-                  <div class="studio-details">
-                    <div class="text-container">
-                        <div>
-                            <h1>What can you do with the Creator Studio app?</h1>
-                        </div>
-                    </div>
-            
-                    <div class="li-container" >
-            
-                        <li>Toggle between multiple CourseCraft Pages from your phone</li>
-                        <li>Publish drafted CourseCraft posts, edit titles & descriptions, and delete posts</li>
-                        <li>Get actionable insights about your CourseCraft content</li>
-                        <li>Respond to CourseCraft messages and comments</li>
-                        <li>See notifications about key milestones</li>
-            
-                    </div>
-            
-            
+     <section class="home">
+        <header>
+            <div class="profile">
+                <div class="profile-logo">
+                    <p id="userfirstname">U</p>
                 </div>
-                 
-
-
-                <!------------------------------middle section-------------------------------->
-                
+                <p id="username" style="padding-left: 5px;">Username</p>
             </div>
-            <div class="right">
-                <!------------------------------right section-------------------------------->
+
+
+
+
+        </header>
+
+        
+
+     <section id = "main-section">
+
+
+<!-- main section -->
+
+<div class = "display-content">
+
+<img src="./images/thumbnail_child.png" class = "thumbnail"  alt="child">
+
+<p id = "title">title</p>
+<p id = "creator">created by</p>
+<p id="created-date">created date</p>
+</div>
+
+
+
+<div class = "display-content"></div>
+<div class = "display-content"></div>
+<div class = "display-content"></div>
+<div class = "display-content"></div>
+
+
+
+
+
+
+
+    </section>
+ 
+
+
     
-            </div>
-        </div>
-       </main>
-     
-    
+    <script>
+        const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
 
 
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        })
 
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        })
 
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+
+            }
+        });
+    </script>
 
 </body>
+
 </html>
+<!-- connect your js file here -->
+<script src="">
+   
+</script>
+<script>
+    const url = "http://localhost:8000"
+  
+    let userfirstname = document.getElementById("userfirstname");
+    let username = document.getElementById("username");
+
+    window.addEventListener("load", myScript);
+    function myScript(){
+        let user_name = localStorage.getItem("username")
+        console.log(user_name)
+        
+        let string = user_name[0].toUpperCase()
+        for(let i=1;i<user_name.length;i++){
+            string+=user_name[i]
+        }
+        if(username===null){
+            username.innerHTML= ""
+            userfirstname.innerHTML = "";
+        }else{
+            username.innerHTML = `${string}`
+            userfirstname.innerHTML = `${string[0]}`
+        } 
+    }
+
+    const cl = document.getElementById("onclickk")
+    cl.addEventListener("click",(e)=>{
+        e.preventDefault()
+        async function logoutfun(){
+            let log = await fetch(`${url}/user/logout`,{
+                method:"GET",
+                headers:{
+                    "Content-type": "application/json",
+                    Authorization: `${localStorage.getItem("token")}`
+                },
+            })
+            if(log.ok){
+             localStorage.removeItem("token")
+             alert("Logout successfull..!!")
+              localStorage.removeItem("username")
+              window.open("index.html");
+            }
+        }
+        logoutfun()
+    })
+
+  
+    
+</script>
+
