@@ -227,8 +227,8 @@
     <script>
         // CREATOR STUDIO JS ****************************************************************************
 
-        let creatorId = "1" // Replace it with the data of local storage
-        let creatorName = "dummy" // Replace it with the data of local storage
+        let creatorId = localStorage.getItem("userId") || '1' // Replace it with the data of local storage
+        let creatorName = localStorage.getItem("username") || "dummy" // Replace it with the data of local storage
         let form = document.getElementById('form-upload-form'),
             formEle = document.getElementsByClassName("input-ele")
         let title = document.getElementById("title")
@@ -301,6 +301,7 @@
                         text: "Course Created"
                     })
                     form.reset();
+                    window.location = "./dashboard.html"
                 })
                 .catch(function (error) {
                     Swal.fire({
