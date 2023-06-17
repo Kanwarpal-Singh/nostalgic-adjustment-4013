@@ -4,6 +4,9 @@ const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const { BlackListModel } = require("../models/blacklist.model");
+const path = require("path");
+const app = express()
+app.use(express.static(path.join(__dirname, "public")));
 const studentRouter = express.Router();
 
 // for send mail
@@ -24,7 +27,7 @@ const sendVerificationMail = async (username, email, userId) => {
       from: "jackayron5@gmail.com",
       to: email,
       subject: "For verification mail",
-      html: `<p>Hi ${username}, please click here to <a href="http://localhost:8080/verify?id=${userId}">verify</a>your mail</p>`,
+      html: `<p>Hi ${username}, please click here to <a href="http://localhost:8080/user/verify?id=${userId}">verify</a> your mail</p>`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -38,6 +41,8 @@ const sendVerificationMail = async (username, email, userId) => {
     console.log(error);
   }
 };
+
+
 
 
 studentRouter.post("/register", async (req, res) => {
@@ -66,6 +71,50 @@ studentRouter.post("/register", async (req, res) => {
   }
 });
 
+// Handle GET request to "/verify"
+studentRouter.get("/verify", async (req, res) => {
+  try {
+    const userId = req.query.id;
+
+    const user = await UserModel.updateOne(
+      { _id: userId },
+      {$set:{isVerified:true}}
+    );
+    if (!user) {
+      return res
+        .status(404)
+        .json({ error: "User not found" });
+    }
+
+    if (user.isVerified) {
+      return res.status(200).json({ message: "Email already verified" });
+    }
+
+    res.sendFile(path.join(__dirname, "../public/pages/verify.html"));
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+// To send verification link again
+
+studentRouter.post("/sendlink",async(req,res)=>{
+  try {
+    const {email} = req.body;
+    const user = await UserModel.findOne({email:email})
+    if(user){
+      sendVerificationMail(user.username,user.email,user._id)
+      res.status(200).send({msg:"Verification mail sent to your mail"})
+    }else{
+      res.status(400).send({ msg: "This mail don't exist" });
+    }
+  } catch (error) {
+    
+  }
+})
+
 studentRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -75,7 +124,7 @@ studentRouter.post("/login", async (req, res) => {
     }
     const isPass = await bcrypt.compare(password, isUserPresent.password);
     if (!isPass) {
-      return res.send({ msg: "invalid credential" });
+      return res.status(401).send({ msg: "invalid credential" });
     }
     const token = await jwt.sign(
       {

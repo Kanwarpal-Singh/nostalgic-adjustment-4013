@@ -93,7 +93,7 @@ formEl.addEventListener("submit", async (e) => {
     passwordText.style.color = "#ff0000";
   } else {
     try {
-      // Submit the form or perform further actions
+    
       const userObj = {
         username: usernameInput.value,
         email: emailInput.value,
@@ -108,6 +108,13 @@ formEl.addEventListener("submit", async (e) => {
         body: JSON.stringify(userObj),
       });
 
+      
+      if(response.status === 401){
+        alert("Email already registered")
+      }
+      if(response.status === 200){
+        alert("Registration success ! Verification link sent to mail")
+      }
       const data = await response.json();
       console.log(data);
     } catch (error) {
@@ -141,28 +148,21 @@ formlogin.addEventListener("submit", async (e) => {
       let response = await res.json();
       console.log(response.isVerified);
 
-      // Check if the email is verified
+      // Checking if the email is verified
       if (response.isVerified) {
-        // Email is already verified, proceed with login
+        // Email is verified, proceed with login
         storeUserInLocalStorage(response);
         alert("Login Successfully");
         window.location.href = "../dashboard.html";
       } else {
-        // Email is not verified, send verification request
-        let verifyRes = await verifyEmail(response.userId);
-
-        if (verifyRes.ok) {
-          // Verification request successful
-          storeUserInLocalStorage(response);
-          alert("Email verification required.");
-          // window.location.href = "../dashboard.html";
-        } else {
-          // Verification request failed
-          alert("Verification request failed");
-        }
+        // Email is not verified
+        alert("Email verification required.");
       }
-    } else {
+    } else if (res.status === 401) {
+      // Wrong credentials
       alert("Wrong Credentials");
+    } else {
+      alert("Login request failed");
     }
   } catch (error) {
     alert("Something went wrong");
@@ -171,7 +171,7 @@ formlogin.addEventListener("submit", async (e) => {
 
 async function verifyEmail(userId) {
   try {
-    let verifyRes = await fetch(`${BASEURL}user//verify?id=${userId}`, {
+    let verifyRes = await fetch(`${BASEURL}/user/verify?id=${userId}`, {
       method: "GET",
     });
     return verifyRes;
@@ -186,3 +186,4 @@ function storeUserInLocalStorage(user) {
   localStorage.setItem("userId", user.userId);
   localStorage.setItem("username", user.username);
 }
+

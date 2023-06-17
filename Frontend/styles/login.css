@@ -71,8 +71,8 @@ form.sign-in-form {
   width: 100%;
   background-color: #f0f0f0;
   margin: 10px 0;
-  height: 55px;
-  border-radius: 55px;
+  height: 51px;
+  border-radius: 0px;
   display: grid;
   grid-template-columns: 15% 85%;
   padding: 0 0.4rem;
