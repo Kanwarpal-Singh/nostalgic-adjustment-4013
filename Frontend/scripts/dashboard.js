@@ -2,23 +2,23 @@
 
 let data = [
 
-    {
-    "_id": "648c32bf6c3782a189731d43",
-    "title": "The Complete Data Analyst Bootcamp",
+  {
+    "_id": "648d9ec6c74f78569429c8ad",
+    "title": "The Complete Data Analyst Course",
     "course": "Data Analyst",
-    "description": "The course provides the complete preparation you need to become a data analyst.\r\nFill up your resume with in-demand data skills: Python programming, NumPy, pandas, data preparation - data collection, data cleaning, data preprocessing, data visualization; data analysis, data analytics\r\nAcquire a big-picture understanding of the data analyst role.\r\nLearn beginner and advanced Python.\r\nStudy mathematics for Python.\r\nWe will teach you NumPy and pandas, basics, and advanced.",
+    "description": "The course provides the complete preparation you need to become a data analyst.\r\nFill up your resume with in-demand data skills: Python programming, NumPy, pandas, data preparation - data collection, data cleaning, data preprocessing, data visualization; data analysis, data analytics.\r\nAcquire a big-picture understanding of the data analyst role.\r\nLearn beginner and advanced Python.",
     "language": "English",
     "creatorId": "641c32bf6c3782a189731d43",
     "creatorName": "dummy",
     "content": [
       {
         "videoName": "videos/Dataanalyst-Video-1.m4v",
-        "videoUrl": "https://course-craft-videos.s3.ap-south-1.amazonaws.com/videos/Dataanalyst-Video-1.m4v?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATEUVAXTOSYIGSTWW%2F20230616%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230616T100031Z&X-Amz-Expires=432000&X-Amz-Signature=96bbdcba1657e72b881fff90ed0f4c33f13a9951312f2f7cc7cb23688f6c3cdd&X-Amz-SignedHeaders=host&x-id=GetObject",
-        "postedAt": "2023-06-16T09:59:40.854Z",
+        "videoUrl": "https://course-craft-videos.s3.ap-south-1.amazonaws.com/videos/Dataanalyst-Video-1.m4v?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATEUVAXTOSYIGSTWW%2F20230617%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230617T115342Z&X-Amz-Expires=432000&X-Amz-Signature=d20440fd8d05489e57db72b848e0e2fd35fdfd7a08f09e1c75fbc16f1247937a&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "postedAt": "2023-06-16T14:17:13.785Z",
         "shares": 0,
-        "thumbnailName": "images/DataAnalyst.png",
-        "thumbnailURL": "https://course-craft-videos.s3.ap-south-1.amazonaws.com/images/DataAnalyst.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATEUVAXTOSYIGSTWW%2F20230616%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230616T100031Z&X-Amz-Expires=432000&X-Amz-Signature=c08cf26abccc93ff74fe2bbe5d3ccc23c9d8d7af875d7e37b5ccaa438d903e60&X-Amz-SignedHeaders=host&x-id=GetObject",
-        "_id": "648c32bf6c3782a189731d44",
+        "thumbnailName": "images/Data_Analytics.png",
+        "thumbnailURL": "https://course-craft-videos.s3.ap-south-1.amazonaws.com/images/Data_Analytics.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATEUVAXTOSYIGSTWW%2F20230617%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230617T115342Z&X-Amz-Expires=432000&X-Amz-Signature=5807da5fd6550a493dc9b0961fe86af890ee6e2c9ca0aa7750bb48e4cffdfe2a&X-Amz-SignedHeaders=host&x-id=GetObject",
+        "_id": "648d9ec6c74f78569429c8ae",
         "likedBy": [
           
         ],
@@ -27,7 +27,7 @@ let data = [
         ]
       }
     ]
-  } 
+  }
 ]
     
 
