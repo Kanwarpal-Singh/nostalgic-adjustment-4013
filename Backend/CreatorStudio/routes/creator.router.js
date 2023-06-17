@@ -12,11 +12,14 @@ const {
 const { getSignedUrl } = require("@aws-sdk/s3-request-presigner"); //Package for getting the url of files from s3 bucket
 const { CourseModel } = require("./../models/course.model");
 
-const accessKeyId = process.env.accessKeyId
-const secretAccessKey = process.env.secretAccessKey
-const region = process.env.region
-const bucket = process.env.bucket
-const expiry = process.env.URLexpiry
+const accessKeyId = process.env.ACCESS_KEY_ID
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
+const region = process.env.REGION
+const bucket = process.env.BUCKET
+const expiry = process.env.URL_EXPIRY
+
+creatorRouter.use(express.json({ limit: "50mb" }));
+creatorRouter.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 const s3 = new S3Client({          // Setting the credential of aws
     region: region,
@@ -26,9 +29,14 @@ const s3 = new S3Client({          // Setting the credential of aws
     }
 })
 
-// const storage = multer.memoryStorage();
-// const upload = multer({ storage: storage })
-const upload = multer();
+const storage = multer.memoryStorage();
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 50 * 1024 * 1024, // Set the maximum file size to 50MB
+    },
+})
+// const upload = multer();
 
 creatorRouter.get("/creator", (req, res) => {
     res.sendFile(path.join(__dirname, "./../course.html"))  // Sending the course form
@@ -48,12 +56,25 @@ creatorRouter.get("/getcourse/:id", async (req, res) => {
     }
 });
 
+creatorRouter.get("/getcourses", async (req, res) => {
+    try {
+        const courseExists = await CourseModel.find();
+        if (!courseExists[0]) return res.status(404).json({ message: "Courses not found" });
+
+        res.status(200).json(courseExists)
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send({ "error": "Something went wrong" });
+    }
+});
+
 creatorRouter.post('/upload', upload.fields([{ name: 'image' }, { name: 'video' }]), async function (req, res, next) {
 
     const { title, description, language, course, creatorId, creatorName } = req.body
 
     try {
-        
+
         const videoFile = req.files['video'][0];                    // Extract the uploaded video file from the request through frontend
         const videoName = 'videos/' + videoFile.originalname        // storing original file name
         const videoUrl = await handleAwsStore(videoFile, videoName) // storing file and generating the url with expirable lifetime
