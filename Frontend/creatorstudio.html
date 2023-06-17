@@ -19,12 +19,19 @@
     <title>Creator Studio</title>
     <!-- CREATOR STUDIO CSS *************************************************************************** -->
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css"
+        integrity="sha256-7jUS+MWeqkFdmW9ozkZ7mPagz+QmMbsBlt+Q3MsE+FU=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"
+        integrity="sha256-2Dbg51yxfa7qZ8CSKqsNxHtph8UHdgbzxXF9ANtyJHo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/creatorstudio.css">
 
     <!-- CREATOR STUDIO CSS *************************************************************************** -->
 </head>
 
 <body>
+    <div class="studio-overlay"></div>
+    <div class="loader"></div>
+
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -126,7 +133,7 @@
     </nav>
 
     <section class="home">
-        <header>
+        <header style="width: 100%;">
             <div class="profile">
                 <div class="profile-logo">
                     <p id="userfirstname">U</p>
@@ -137,64 +144,74 @@
         </header>
         <!-- ************************* write your code here to display data ************************* -->
         <div class="upload-form">
+            <!-- <svg class="std-loader" viewBox="25 25 50 50">
+                <circle r="20" cy="50" cx="50"></circle>
+            </svg> -->
             <h2 id="form-header">Create Course</h2>
             <form action="http://13.233.69.180:3000/api/upload" method="POST" id="form-upload-form"
                 enctype="multipart/form-data">
 
-                <div class="form-item">
-                    <label for="title">Title:</label>
-                    <input type="text" class="input-ele" name="title" id="title" required>
+                <div class="combine">
+                    <div class="form-item">
+                        <label for="title">Title:</label>
+                        <input type="text" placeholder="Course Title..." class="input-ele" name="title" id="title" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="course">Course:</label>
+                        <select name="course" class="input-ele" id="course" required>
+                            <option value="">Course</option>
+                            <option value="Data Analyst">Data Analyst</option>
+                            <option value="Full Stock Web-Development">Full Stock Web-Development</option>
+                            <option value="Networking">Networking</option>
+                            <option value="Database Engineering">Database Engineering</option>
+                            <option value="Frontend Frameworks">Frontend Frameworks</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="form-item">
-                    <label for="course">Course:</label>
-                    <select name="course" class="input-ele" id="course" required>
-                        <option value="">Course</option>
-                        <option value="Data Analyst">Data Analyst</option>
-                        <option value="Full Stock Web-Development">Full Stock Web-Development</option>
-                        <option value="Networking">Networking</option>
-                        <option value="Database Engineering">Database Engineering</option>
-                        <option value="Frontend Frameworks">Frontend Frameworks</option>
-                    </select>
+                <div class="combine">
+                    <div class="form-item">
+                        <label for="language">Language:</label>
+                        <input type="text" placeholder="Language" class="input-ele" name="language" id="language" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="description">Description:</label>
+                        <textarea name="description" placeholder="Course Description" id="description" required></textarea>
+                    </div>
                 </div>
 
-                <div class="form-item">
-                    <label for="description">Description:</label>
-                    <textarea name="description" id="description" required></textarea>
+                <div class="combine">
+                    <div class="form-item">
+                        <label for="">Video:</label>
+                        <div class="drag-area">
+                            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <div class="drag-heading">Browse File to Upload</div> <!--  Drag & drop to upload File -->
+                            <!-- <span>OR</span> -->
+                            <label for="video">Browse File</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-item">
+                        <label for="">Thumbnail:</label>
+                        <div class="drag-area">
+                            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <div class="drag-heading">Browse File to Upload</div> <!--  Drag & drop to upload File -->
+                            <!-- <span>OR</span> -->
+                            <label for="thumbnail">Browse File</label>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-item">
-                    <label for="language">Language:</label>
-                    <input type="text" class="input-ele" name="language" id="language" required>
-                </div>
 
                 <div class="form-item">
-                    Video:
                     <input hidden type="file" class="input-ele" name="video" id="video" required>
                 </div>
 
-                <div class="drag-area">
-                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <div class="drag-heading">Browse File to Upload</div> <!--  Drag & drop to upload File -->
-                    <!-- <span>OR</span> -->
-                    <label for="video">Browse File</label>
-                </div>
-
-                <!-- <div class="form-item">
-                <label for="thumbnail">Thumbnail:</label>
-                <input type="file" class="input-ele" name="image" id="thumbnail" required>
-              </div> -->
-
                 <div class="form-item">
-                    Thumbnail:
                     <input type="file" class="input-ele" name="image" id="thumbnail" required hidden>
-                </div>
-
-                <div class="drag-area">
-                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <div class="drag-heading">Browse File to Upload</div> <!--  Drag & drop to upload File -->
-                    <!-- <span>OR</span> -->
-                    <label for="thumbnail">Browse File</label>
                 </div>
 
                 <div class="">
@@ -212,7 +229,8 @@
 
         let creatorId = "1" // Replace it with the data of local storage
         let creatorName = "dummy" // Replace it with the data of local storage
-        let form = document.getElementById('form-upload-form')
+        let form = document.getElementById('form-upload-form'),
+            formEle = document.getElementsByClassName("input-ele")
         let title = document.getElementById("title")
         let description = document.getElementById("description")
         let video = document.getElementById("video")
@@ -223,19 +241,35 @@
 
 
         video.addEventListener("change", () => {
-            if (video.files[0].type !== "video/mp4") return alert("Please provide only Video")
-            alert("Uploaded")
+            if (video.files[0].type !== "video/mp4") {
+                Swal.fire({
+                    icon: 'error',
+                    title: "Please provide only Video"
+                })
+                return;
+            }
+            Swal.fire({
+                icon: 'success',
+                title: "Uploaded"
+            })
         })
 
         thumbnail.addEventListener("change", () => {
-            if (!imagesTypes.includes(thumbnail.files[0].type)) return alert("Thumbnail must be an Image")
-            alert("Uploaded")
+            if (!imagesTypes.includes(thumbnail.files[0].type)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: "Thumbnail must be an Image"
+                })
+                return;
+            }
+            Swal.fire({
+                icon: 'success',
+                title: "Uploaded"
+            })
         })
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-
-
             const formData = new FormData()
             formData.append("title", title.value)
             formData.append("description", description.value)
@@ -246,14 +280,11 @@
             formData.append("creatorId", creatorId)
             formData.append("creatorName", creatorName)
 
-            console.log(video.files[0].type)
-
             if (video.files[0].type !== "video/mp4") return alert("Please provide video at video sections")
             if (!imagesTypes.includes(thumbnail.files[0].type)) return alert("Thumbnail must be an Image")
 
-
-            // console.log(formData, form.elements['video'].files[0], form.elements['image'].files[0])
-            console.log("Fetching started");
+            document.getElementsByClassName("loader")[0].style.display = "block"
+            document.getElementsByClassName("studio-overlay")[0].style.display = "block"
 
             fetch('http://13.233.69.180:3000/api/upload', {
                 method: 'POST',
@@ -264,12 +295,24 @@
                 })
                 .then(function (data) {
                     console.log(data);
+                    Swal.fire({
+                        icon: 'success',
+                        title: "Success",
+                        text: "Course Created"
+                    })
                     form.reset();
                 })
                 .catch(function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: "Failed",
+                        text: "Something went wrong"
+                    })
                     console.log('Error', error);
                 })
                 .finally(() => {
+                    document.getElementsByClassName("loader")[0].style.display = "none"
+                    document.getElementsByClassName("studio-overlay")[0].style.display = "none"
                     console.log("fetching Completed")
                 })
         });
