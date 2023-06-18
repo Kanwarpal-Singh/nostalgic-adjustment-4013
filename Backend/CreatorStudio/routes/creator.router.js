@@ -156,6 +156,9 @@ async function deleteFromAws(name) {
     await s3.send(deleteCommand);           // sending the delete request to s3
 }
 
+
+
+
 module.exports = {
     creatorRouter
 }
