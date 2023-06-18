@@ -23,11 +23,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
-  subscriptions: {
+  following: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "User",
   },
-  subscribers: {
+  followers: {
     type: [mongoose.Schema.Types.ObjectId],
     subscribedAt: Date.now,
     ref: "User",

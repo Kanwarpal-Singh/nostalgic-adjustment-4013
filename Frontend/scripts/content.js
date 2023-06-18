@@ -4,14 +4,18 @@
 let left  = document.getElementById("left-side");
 let videoUrl = localStorage.getItem("videoUrl");
 let videoName = localStorage.getItem("videoName");
+let postId = localStorage.getItem("postId")
+
+
+document.title = videoName;
 
 
 
   
-  display(videoUrl,videoName)
+  display(videoUrl,videoName,postId)
 
-  function display(videoUrl,videoName) {
-  console.log(videoUrl,videoName)
+  function display(videoUrl,videoName,postId) {
+    console.log(videoUrl,videoName,postId)
     left.innerHTML = null;
     let enterVid = document.createElement("div");
     enterVid.setAttribute("id", "video-content");
@@ -34,10 +38,39 @@ let videoName = localStorage.getItem("videoName");
     // Get initial like count from localStorage or default to 0
     let likeCount = parseInt(localStorage.getItem("likeCount")) || 0;
     total_Likes.innerText = likeCount;
-  
+    
+    async function getLikes(postId){
+      alert("getlikes")
+      try {
+        await fetch(`http://13.233.69.180:3000/api/getcourse/${postId}`,{
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res)=>res.json())
+      .then((data)=>{
+        
+      
+      
+      
+      })
+      return likes
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    // window.onload = function (){
+      getLikes(postId)
+    // }
+
+
+
+
     like_given.src =
       "https://img.icons8.com/?size=1x&id=24816&format=png";
-    like_given.addEventListener("click", function () {
+    like_given.addEventListener("click",  async()=> {
+      const response = await fetch("")
       // Increase like count
       likeCount++;
       // Update total_Likes element
@@ -55,6 +88,10 @@ let videoName = localStorage.getItem("videoName");
     let commentInput = document.createElement("input");
     commentInput.setAttribute("type", "text");
     commentInput.setAttribute("placeholder", "Enter your comment");
+    commentInput.style.width = "100%";
+    commentInput.style.height = "5vh";
+    commentInput.style.borderRadius = "2rem";
+    commentInput.style.marginTop = "1rem"
   
     commentInput.addEventListener("change", function () {
       // Store the comment in localStorage
