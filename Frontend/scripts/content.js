@@ -7,6 +7,9 @@ let videoName = localStorage.getItem("videoName");
 let postId = localStorage.getItem("postId")
 
 
+document.title = videoName;
+
+
 
   
   display(videoUrl,videoName,postId)
@@ -85,6 +88,10 @@ let postId = localStorage.getItem("postId")
     let commentInput = document.createElement("input");
     commentInput.setAttribute("type", "text");
     commentInput.setAttribute("placeholder", "Enter your comment");
+    commentInput.style.width = "100%";
+    commentInput.style.height = "5vh";
+    commentInput.style.borderRadius = "2rem";
+    commentInput.style.marginTop = "1rem"
   
     commentInput.addEventListener("change", function () {
       // Store the comment in localStorage
