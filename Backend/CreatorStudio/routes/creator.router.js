@@ -46,6 +46,7 @@ creatorRouter.get("/getcourse/:id", async (req, res) => {
     const { id } = req.params
     try {
         const courseExists = await CourseModel.findOne({ creatorId: id });
+        // console.log(courseExists)
         if (!courseExists) return res.status(404).json({ message: "Course not found" });
 
         res.status(200).json(courseExists)
