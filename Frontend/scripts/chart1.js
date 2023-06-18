@@ -1,8 +1,12 @@
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     // Fetch data from db.json or your API endpoint
     fetch('./db.json')
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         const combinedLikes = data.reduce((totalLikes, video) => {
           const likesData = video.Video.likedby;
           return totalLikes.concat(likesData);
