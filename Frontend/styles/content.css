@@ -82,8 +82,8 @@ nav .search-bar input[type="search"]::placeholder{
     border-radius: var(--border-radius);
 }
 #main-div{
-    position: relative;
-    top:4.5rem;
+   
+    
     display:flex;
     justify-content: space-between;
     height: 100vh;

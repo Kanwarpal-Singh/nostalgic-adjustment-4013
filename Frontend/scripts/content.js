@@ -4,7 +4,7 @@
 let left  = document.getElementById("left-side");
 let videoUrl = localStorage.getItem("videoUrl");
 let videoName = localStorage.getItem("videoName");
-
+document.title = videoName;
 
 
   
@@ -55,6 +55,10 @@ let videoName = localStorage.getItem("videoName");
     let commentInput = document.createElement("input");
     commentInput.setAttribute("type", "text");
     commentInput.setAttribute("placeholder", "Enter your comment");
+    commentInput.style.width = "100%";
+    commentInput.style.height = "5vh";
+    commentInput.style.borderRadius = "2rem";
+    commentInput.style.marginTop = "1rem"
   
     commentInput.addEventListener("change", function () {
       // Store the comment in localStorage
