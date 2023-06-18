@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #695CFE;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #1b1a1a;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+
+#profile-picture{
+    /* border:1px solid red; */
+   margin:auto;
+   display:block;
+   width:80%;
+   height:25vh;
+   margin-top: 2rem;
+}
+
+#userImage{
+    display:block;
+    margin:auto;
+border-radius:50%;
+    width:15%;
+    height:100%;
+    border:2px solid black;
+}
+
+
+#username{
+    margin:auto;
+    text-align: center;
+}

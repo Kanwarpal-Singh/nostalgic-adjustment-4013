@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!----======== link the CSS file here ======== -->
-    <link rel="stylesheet" href="./styles/commonDashboard.css">
-    <!-- <link rel="stylesheet" href="./styles/insights.css"> -->
-    <link rel="stylesheet" href="./styles/dashboard.css">
+    <title>User's Profile</title>
 
 
-    <!----===== Boxicons CSS ===== -->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Dashboard Page</title>
+
+   <!----======== link the CSS file here ======== -->
+   <link rel="stylesheet" href="./styles/commonDashboard.css">
+   <!-- <link rel="stylesheet" href="./styles/insights.css"> -->
+   <link rel="stylesheet" href="./styles/dashboard.css">
+
+
+   <!----===== Boxicons CSS ===== -->
+   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+       integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+       crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+    <link rel="stylesheet" href="./styles/profile.css">
+
+
+
 </head>
-
 <body>
+    
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -134,110 +141,93 @@
 
         </header>
 
-        
-<div>
-   
 
 
+<div id = "profile-picture">
 
-    <select id="courseSelect">
-        <option value="">Courses</option>
-        <option value="The Complete Networking Fundamentals Course.">The Complete Networking Fundamentals Course</option>
-        <option value="The Ultimate MySQL Bootcamp">The Ultimate MySQL Bootcamp</option>
-        <option value="The Ultimate React Course">The Ultimate React Course</option>
-        <option value="The Complete 2023 Web Development Bootcamp">The Complete 2023 Web Development Bootcamp</option>
-        <option value="The Complete Data Analyst Course">The Complete Data Analyst Course</option>
-      </select>
-      
+<img id = "userImage" src="https://tse1.mm.bing.net/th?id=OIP.leRaZskYpTKA55a0St0tZgHaJa&pid=Api&rs=1&c=1&qlt=95&w=97&h=123" alt="keerti">
+
 </div>
 
-
-
-     <section id = "main-section">
-
-
-<!-- main section -->
+<h3 id  = "username">userName</h3>
 
 
 
 
 
-    </section>
- 
+</body>
+</html>
 
 
-
-
-
-
+<script src="./scripts/profile.js"></script>
 
 
 
 
     
-    <script>
-        const body = document.querySelector('body'),
-            sidebar = body.querySelector('nav'),
-            toggle = body.querySelector(".toggle"),
-            searchBtn = body.querySelector(".search-box"),
-            modeSwitch = body.querySelector(".toggle-switch"),
-            modeText = body.querySelector(".mode-text");
+<script>
+    const body = document.querySelector('body'),
+        sidebar = body.querySelector('nav'),
+        toggle = body.querySelector(".toggle"),
+        searchBtn = body.querySelector(".search-box"),
+        modeSwitch = body.querySelector(".toggle-switch"),
+        modeText = body.querySelector(".mode-text");
 
-           
+       
 
-        toggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        })
+    toggle.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+    })
 
-        searchBtn.addEventListener("click", () => {
-            sidebar.classList.remove("close");
-        })
+    searchBtn.addEventListener("click", () => {
+        sidebar.classList.remove("close");
+    })
 
-        modeSwitch.addEventListener("click", () => {
-            body.classList.toggle("dark");
+    modeSwitch.addEventListener("click", () => {
+        body.classList.toggle("dark");
 
-            if (body.classList.contains("dark")) {
-                modeText.innerText = "Light mode";
-            } else {
-                modeText.innerText = "Dark mode";
+        if (body.classList.contains("dark")) {
+            modeText.innerText = "Light mode";
+        } else {
+            modeText.innerText = "Dark mode";
 
-            }
-        });
-    </script>
+        }
+    });
+</script>
 
 </body>
 
 </html>
 <!-- connect your js file here -->
 <script src="">
-   
+
 </script>
 <script>
-  
-    let userfirstname = document.getElementById("userfirstname");
-    let username = document.getElementById("username");
 
-    window.addEventListener("load", myScript);
-    function myScript(){
-        let user_name = localStorage.getItem("username")
-        console.log(user_name)
-        
-        let string = user_name[0].toUpperCase()
-        for(let i=1;i<user_name.length;i++){
-            string+=user_name[i]
-        }
-        if(username===null){
-            username.innerHTML= ""
-            userfirstname.innerHTML = "";
-        }else{
-            username.innerHTML = `${string}`
-            userfirstname.innerHTML = `${string[0]}`
-        } 
-    }
+let userfirstname = document.getElementById("userfirstname");
+let username = document.getElementById("username");
 
-
-  
+window.addEventListener("load", myScript);
+function myScript(){
+    let user_name = localStorage.getItem("username")
+    console.log(user_name)
     
+    let string = user_name[0].toUpperCase()
+    for(let i=1;i<user_name.length;i++){
+        string+=user_name[i]
+    }
+    if(username===null){
+        username.innerHTML= ""
+        userfirstname.innerHTML = "";
+    }else{
+        username.innerHTML = `${string}`
+        userfirstname.innerHTML = `${string[0]}`
+    } 
+}
+
+
+
+
 </script>
 
 <script src="./scripts/dashboard.js"></script>

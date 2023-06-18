@@ -392,16 +392,18 @@ body.dark .home .text{
  .display-content{
 
     width:80%;
-    border:1px solid black;
+    border:5px solid #1a174d;
     margin:auto;
     height :500px;
     margin-top: 12px;
+    border-radius: 2rem;
+    background-color: #fff;
 }
 
 
 
 .display-content:hover{
-    background-color: skyblue;
+    background-color: #eedfcc;
     
 }
 
@@ -422,12 +424,20 @@ body.dark .home .text{
 
 #imagedisplay{
     width:100%;
+    border-radius: 2rem;
 } 
-
-/* #imagedisplay:hover{
-
-} */
 
 .display-content>h3{
     margin-left: 12px;
+}
+
+
+#courseSelect{
+    width:12%;
+    margin-left: 16px;
+    border:2px solid #1a174d;
+    border-radius: 2rem;
+    font:600;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 400;
 }
