@@ -24,13 +24,13 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="image/SHORTS.png" alt="">
+                    <img src="./images/logo.png" style="width: 100%;" alt="">
                 </span>
 
-                <div class="text logo-text">
+                <!-- <div class="text logo-text">
                     <span class="name">Course Craft</span>
                     <span class="profession">Insights</span>
-                </div>
+                </div> -->
             </div>
 
             <i class='bx bx-chevron-right toggle'></i>
@@ -47,7 +47,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="index.html">
+                        <a href="./dashboard.html">
                             <!-- <i class='bx bx-home-alt icon' ></i> -->
                             <i class="fa-solid fa-house icon"></i>
                             <span class="text nav-text">Home</span>
@@ -229,9 +229,9 @@
 <script src="./scripts/chart1.js"></script>
 <script src="./scripts/chart2.js"></script>
 <script src="./scripts/chart3.js"></script>
+<script src="./scripts/commondashboard.js"></script>
 
 <script>
-    const url = "http://localhost:8000"
   
     let userfirstname = document.getElementById("userfirstname");
     let username = document.getElementById("username");
@@ -254,28 +254,6 @@
         } 
     }
 
-    const cl = document.getElementById("onclickk")
-    cl.addEventListener("click",(e)=>{
-        e.preventDefault()
-        async function logoutfun(){
-            let log = await fetch(`${url}/user/logout`,{
-                method:"GET",
-                headers:{
-                    "Content-type": "application/json",
-                    Authorization: `${localStorage.getItem("token")}`
-                },
-            })
-            if(log.ok){
-             localStorage.removeItem("token")
-             alert("Logout successfull..!!")
-              localStorage.removeItem("username")
-              window.open("index.html");
-            }
-        }
-        logoutfun()
-    })
-
-  
-    
+   
 </script>
 
