@@ -2,8 +2,8 @@
 
 //let video = document.getElementById("video-content");
 let left  = document.getElementById("left-side");
-let videoUrl = localStorage.getItem(videoURL);
-let videoName = localStorage.getItem(videoName);
+let videoUrl = localStorage.getItem("videoUrl");
+let videoName = localStorage.getItem("videoName");
 
 
 
@@ -11,7 +11,7 @@ let videoName = localStorage.getItem(videoName);
   display(videoUrl,videoName)
 
   function display(videoUrl,videoName) {
-  
+  console.log(videoUrl,videoName)
     left.innerHTML = null;
     let enterVid = document.createElement("div");
     enterVid.setAttribute("id", "video-content");
