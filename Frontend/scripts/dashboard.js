@@ -188,7 +188,7 @@ image.setAttribute("src",el.content[0].thumbnailURL)
 
 image.addEventListener("click",(e)=>{
   e.preventDefault()
-  clickevent( el.content[0].videoUrl, el.content[0].videoName,)
+  clickevent( el.content[0].videoUrl, el.content[0].videoName)
 })
 
 
