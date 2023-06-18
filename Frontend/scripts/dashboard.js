@@ -159,6 +159,12 @@ let data = [
 
 displayData(data)
 
+
+
+
+
+
+
 function displayData(data){
 console.log(data)
 
@@ -182,7 +188,7 @@ image.setAttribute("src",el.content[0].thumbnailURL)
 
 image.addEventListener("click",(e)=>{
   e.preventDefault()
-  clickevent( el.content[0].videoUrl, el.content[0].videoName)
+  clickevent( el.content[0].videoUrl, el.content[0].videoName,)
 })
 
 
@@ -191,15 +197,18 @@ image.addEventListener("click",(e)=>{
 let title = document.createElement("h3")
 
 title.innerText =`Title : ${el.title}` ;
+title.style.color = "#800020";
 
 
 let owner = document.createElement("h3")
 owner.innerText = `Created By : ${el.creatorName}`;
+owner.style.color = "#b14675";
+
+
 
 let createdDate  = document.createElement("h3")
 
-
-
+createdDate.style.color = "#b14675";
 
 const dateTimeString = el.content[0].postedAt;
 const dateTime = new Date(dateTimeString);
@@ -242,7 +251,7 @@ function clickevent(url,name){
 
 
 
-localStorage.setItem("videoURL",url)
+localStorage.setItem("videoUrl",url)
 localStorage.setItem("videoName",name)
 
 window.location.href = "./content.html"
