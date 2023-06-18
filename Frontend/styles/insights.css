@@ -22,7 +22,8 @@
     width: 100%;
     height: 80px;
     border-radius: 10px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
   }
   #course-filter{
     width: 20%;
@@ -31,6 +32,7 @@
     border-radius: 5px;
     margin:20px 10px;
     font-size: large;
+    background: none;
   }
   #course-list {
     display: flex;
@@ -48,7 +50,8 @@
   /* insight table content */
   .insights-table{
     width: 100%;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
+    /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
     height: fit-content;
     border-radius: 10px;
     display: grid;
@@ -62,14 +65,16 @@
   }
   .top-data{
     height:50% ;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     border-radius: 5px;
     padding: 10px;
     font-size: large;
   }
   .bottom-data{
     height: 50%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     border-radius: 5px;
     padding: 10px;
     font-size: large;
@@ -79,6 +84,7 @@
   border: none;
   border-radius: 5px;
   font-size: large;
+  background: none;
 }
 
 
@@ -90,7 +96,8 @@
   /* charts */
   #chart-box{
     margin-top: 50px;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     width:100%;
     display: grid;
     grid-template-columns: repeat(3,1fr);

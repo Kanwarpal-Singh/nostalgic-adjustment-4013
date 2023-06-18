@@ -46,6 +46,7 @@ creatorRouter.get("/getcourse/:id", async (req, res) => {
     const { id } = req.params
     try {
         const courseExists = await CourseModel.findOne({ creatorId: id });
+        // console.log(courseExists)
         if (!courseExists) return res.status(404).json({ message: "Course not found" });
 
         res.status(200).json(courseExists)
@@ -169,6 +170,7 @@ async function deleteFromAws(name) {
 
     await s3.send(deleteCommand);           // sending the delete request to s3
 }
+
 
 creatorRouter.patch("/update/like/:creatorId", async (req, res) => {
     const { creatorId } = req.params
