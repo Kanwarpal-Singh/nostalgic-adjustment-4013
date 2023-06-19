@@ -10,7 +10,7 @@ CourseCraft is a digital content creator's site where users can upload their con
 
 **Client:** HTML, CSS and JavaScript
 
-**Server:** Node, Express, MongoDB, JWT, Bcrypt,CORS
+**Server:** Node, Express, MongoDB, JWT, Bcrypt, CORS, AWS S3 Bucket, AWS EC2
 
 **Github:** To maintain repository and collabration and version control.
 
