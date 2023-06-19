@@ -11,7 +11,6 @@ form{
 }
 
 form>div{
-    /* border: 2px solid black; */
     margin: auto;
     width: 55%;
   text-align: center;
@@ -26,6 +25,3 @@ display: block;
    outline: none;
    font-size: 14px;
 }
-/* form div>input{
-    
-} */

@@ -19,6 +19,9 @@ sendLink.addEventListener("submit",async(e)=>{
         if(response.status ===400){
             alert("This mail doesn't exist")
         }
+        if(response.status===201){
+            alert("You are verified Please login")
+        }
         const data = await response.json()
         if(response.status===200){
             alert("Verification mail sent to your mail")

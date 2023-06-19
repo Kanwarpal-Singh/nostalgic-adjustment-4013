@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const cors = require("cors");
+const cookiParser = require("cookie-parser");
 const { connection } = require("./config/db");
 const { studentRouter } = require("./routes/students.route");
 const PORT = process.env.PORT;
@@ -9,6 +10,7 @@ const { UserModel } = require("./models/students.model");
 // to render verify html
 app.use(express.json());
 app.use(cors());
+app.use(cookiParser());
 
 
 
