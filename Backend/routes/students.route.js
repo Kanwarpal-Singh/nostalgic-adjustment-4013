@@ -31,15 +31,6 @@ const sendVerificationMail = async (username, email, userId) => {
       html: `<p>Hi ${username}, please click here to <a href="http://localhost:8080/user/verify?id=${userId}">verify</a> your mail</p>`,
     };
 
-    if (token) {
-      mailOptions = {
-        from: "jackayron5@gmail.com",
-        to: email,
-        subject: "For reset password",
-        html: `<p>Hi ${username}, please click here to <a href="http://localhost:8080/user/forget-password?token=${token}">reset </a> your password</p>`,
-      };
-    }
-
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.error("Error sending email:", error);
