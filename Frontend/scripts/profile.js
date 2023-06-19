@@ -11,5 +11,5 @@ let subscriber = document.querySelector("#subscriber")
 
 name.innerText = "keerti"
 email.innerText = "keerti"
-phone.innerText = "keerti"
+phone.innerText = "548524782"
 subscriber.innerText = "keerti"
