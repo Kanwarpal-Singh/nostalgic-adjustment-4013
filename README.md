@@ -17,12 +17,11 @@ CourseCraft is a digital content creator's site where users can upload their con
 
 ## Screenshots
 
-![Home Page](https://postimg.cc/DJ8mWYL4)
-![Login Page](https://postimg.cc/DJ8mWYL4)
-![Signup Page](https://postimg.cc/DJ8mWYL4)
-![Dashboard Page](https://postimg.cc/DJ8mWYL4)
-![Content Page](https://postimg.cc/DJ8mWYL4)
-![Content Creator Page](https://postimg.cc/DJ8mWYL4)
+![Home Page](https://i.postimg.cc/W37ZHB48/Screenshot-1562.png)
+![Signup /login Page](https://i.postimg.cc/mD4XMWqy/Screenshot-1563.png)
+![Dashboard Page](https://i.postimg.cc/XY02GyPy/Screenshot-1564.png)
+![Content Page](https://i.postimg.cc/s2bGx5nk/Screenshot-1565.png)
+![Content Creator Page](https://i.postimg.cc/PrfsL98j/Screenshot-1567.png)
 ## Features
 
 - Light/dark mode toggle
