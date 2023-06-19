@@ -1,91 +1,45 @@
 
-
-let datafromls = JSON.parse(localStorage.getItem("allData")) || null
-
-
-if(datafromls == null){
-
-  console.log("data coming from fetch request")
+let dataforfilter = []
 
 window.addEventListener("load",()=>{
-
   getData()
-
-
 })
 
 
-}
-
-else{
-
-console.log("data coming fromls ")
-displayData(datafromls)
-
-
-}
-
-
-
-
-
 async function getData(){
-
     try{
-        let data = await  fetch(" http://13.233.69.180:3000/api/getcourses")
+      let data = await  fetch("http://13.233.69.180:3000/api/getcourses")
+      data = await data.json();
 
-        data = await data.json();
-              localStorage.setItem("allData",JSON.stringify(data))
-        displayData(data)
+    dataforfilter = data
 
 
+      displayData(data)
     }
-
     catch(err){
-        console.log(err)
+      console.log(err)
     }
- 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 function displayData(data){
-// console.log(data)
-
-
 
 document.querySelector("#main-section").innerHTML = null;
-
 data.forEach((el)=>{
-
 let card = document.createElement("div")
 card.setAttribute("class","display-content")
-
 let imagediv = document.createElement("div")
 imagediv.setAttribute("id","image-container")
 
-
 let image = document.createElement("img");
-image.setAttribute("id","imagedisplay")
+image.setAttribute("id","imagedisplay");
 
 image.setAttribute("src",el.content[0].thumbnailURL)
 
 image.addEventListener("click",(e)=>{
   e.preventDefault()
-  clickevent( el.content[0].videoUrl, el.content[0].videoName)
+  clickevent(el._id, el.content[0].videoUrl, el.content[0].videoName)
 })
 
 
@@ -140,15 +94,22 @@ document.querySelector("#main-section").append(card);
 }
 
 
-function clickevent(url,name){
+
+
+
+
+function clickevent(id,url,name){
+
+
 
 localStorage.setItem("videoUrl",url)
 localStorage.setItem("videoName",name)
-
+localStorage.setItem("postId",id)
 window.location.href = "./content.html"
 
 
 }
+
 
 
 
@@ -160,10 +121,10 @@ selectElement.addEventListener("change",filterfunc)
 
 
 
-console.log(datafromls)
+
 function filterfunc(){
 
-let data = datafromls
+let data = dataforfilter
 
     var selectedCourse = selectElement.value;
 
@@ -176,8 +137,7 @@ else{
     console.log(selectedCourse)
  
          return el.title == selectedCourse
-           
- 
+         
        })
 
        displayData(filteredData)

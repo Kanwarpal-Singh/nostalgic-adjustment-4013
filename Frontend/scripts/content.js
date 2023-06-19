@@ -40,7 +40,7 @@ document.title = videoName;
     total_Likes.innerText = likeCount;
     
     async function getLikes(postId){
-      alert("getlikes")
+    
       try {
         await fetch(`http://13.233.69.180:3000/api/getcourse/${postId}`,{
         method: "GET",
