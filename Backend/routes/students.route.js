@@ -10,6 +10,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 const studentRouter = express.Router();
 
+const baseURL = "http://localhost:8080"
+
 // for send mail
 const sendVerificationMail = async (username, email, userId) => {
   try {

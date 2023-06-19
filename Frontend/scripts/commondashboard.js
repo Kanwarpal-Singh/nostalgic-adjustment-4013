@@ -8,7 +8,7 @@ window.onload = function () {
 
 
 
-const url = "https://expensive-toad-hoodie.cyclic.app"
+const url = "http://localhost:8080"
 
 const cl = document.getElementById("onclickk")
 cl.addEventListener("click",(e)=>{

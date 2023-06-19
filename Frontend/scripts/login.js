@@ -7,7 +7,7 @@ const usernameText = document.getElementById("text1");
 const emailText = document.getElementById("text2");
 const passwordText = document.getElementById("text3");
 
-let BASEURL = "https://expensive-toad-hoodie.cyclic.app";
+let BASEURL = "http://localhost:8080";
 
 signUpBtn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");

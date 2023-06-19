@@ -307,14 +307,14 @@
                     return response.json();
                 })
                 .then(function (data) {
-                    console.log(data);
                     Swal.fire({
                         icon: 'success',
                         title: "Success",
                         text: "Course Created"
-                    })
+                    }).then(function () {
+                        window.location = "./dashboard.html"
+                    });
                     form.reset();
-                    window.location = "./dashboard.html"
                 })
                 .catch(function (error) {
                     Swal.fire({
