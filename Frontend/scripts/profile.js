@@ -9,7 +9,7 @@ let subscriber = document.querySelector("#subscriber")
 
 
 
-name.innerText = "keerti"
-email.innerText = "keerti"
+name.innerText = "shahbaz"
+email.innerText = "shahbaz@gmail.com"
 phone.innerText = "548524782"
-subscriber.innerText = "keerti"
+subscriber.innerText = "4"
