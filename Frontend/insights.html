@@ -24,13 +24,13 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="image/SHORTS.png" alt="">
+                    <img src="./images/logo.png" style="width: 100%;" alt="">
                 </span>
 
-                <div class="text logo-text">
+                <!-- <div class="text logo-text">
                     <span class="name">Course Craft</span>
                     <span class="profession">Insights</span>
-                </div>
+                </div> -->
             </div>
 
             <i class='bx bx-chevron-right toggle'></i>
@@ -47,7 +47,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="index.html">
+                        <a href="./dashboard.html">
                             <!-- <i class='bx bx-home-alt icon' ></i> -->
                             <i class="fa-solid fa-house icon"></i>
                             <span class="text nav-text">Home</span>
@@ -120,7 +120,7 @@
 
     </nav>
 
-     <section class="home">
+    <section class="home">
         <header>
             <div class="profile">
                 <div class="profile-logo">
@@ -131,7 +131,63 @@
 
         </header>
         <!-- write your code here to display data -->
-     </section>
+        <!-- sorting function on corses -->
+        <div class="insights-parent">
+            <div class="insights-content">
+                <!-- filter by course -->
+                <div class="filter-container">
+                    <!-- <h2>Courses</h2> -->
+                    <select id="course-filter" onchange="filterCourses()">
+                      <option value="all">All Courses</option>
+                      <option value="math">Math</option>
+                      <option value="science">Science</option>
+                      <option value="history">History</option>
+                      <option value="english">English</option>
+                      <option value="computer">Computer</option>
+                    </select>
+                </div>
+                <!-- insights table -->
+                <div class="insights-table">
+                    <div class="table-card">
+                        <div class="top-data">Total Likes</div>
+                        <div class="bottom-data">0</div>
+                    </div>
+                    <div class="table-card">
+                        <div class="top-data">Total Comments</div>
+                        <div class="bottom-data">0</div>
+                    </div>
+                    <div class="table-card">
+                        <div class="top-data">Total Views</div>
+                        <div class="bottom-data">0</div>
+                    </div>
+                    <div class="table-card">
+                        <div class="top-data">Followers</div>
+                        <div class="bottom-data">0</div>
+                    </div>
+                    <div class="table-card">
+                        <div class="top-data">Total Posts</div>
+                        <div class="bottom-data">0</div>
+                    </div>
+                    <div class="table-card">
+                        <div class="top-data">
+                            <select id="Time-Sorting" onchange="SortTotalLikes()">
+                                <option value="Likes by Time">Likes by Time</option>
+                                <option value="24Hrs">24Hrs</option>
+                                <option value="48Hrs">48Hrs</option>
+                              </select>
+                        </div>
+                        <div class="bottom-data">0</div>
+                    </div>
+                </div>
+                <!-- graphs -->
+                <div id="chart-box">
+                    <div><canvas id="chart1" ></canvas></div>
+                    <div><canvas id="chart2" ></canvas></div>
+                    <div ><canvas id="chart3" ></canvas></div>
+                </div>
+            </div>
+        </div>
+    </section>
         
     
 
@@ -168,11 +224,14 @@
 
 </html>
 <!-- connect your js file here -->
-<script src="./scripts/insights.js">
-   
-</script>
+<script src="./scripts/insights.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- <script src="./scripts/chart1.js"></script> -->
+<script src="./scripts/chart2.js"></script>
+<script src="./scripts/chart3.js"></script>
+<script src="./scripts/commondashboard.js"></script>
+
 <script>
-    const url = "http://localhost:8000"
   
     let userfirstname = document.getElementById("userfirstname");
     let username = document.getElementById("username");
@@ -180,7 +239,7 @@
     window.addEventListener("load", myScript);
     function myScript(){
         let user_name = localStorage.getItem("username")
-        console.log(user_name)
+        // console.log(user_name)
         
         let string = user_name[0].toUpperCase()
         for(let i=1;i<user_name.length;i++){
@@ -195,28 +254,5 @@
         } 
     }
 
-    const cl = document.getElementById("onclickk")
-    cl.addEventListener("click",(e)=>{
-        e.preventDefault()
-        async function logoutfun(){
-            let log = await fetch(`${url}/user/logout`,{
-                method:"GET",
-                headers:{
-                    "Content-type": "application/json",
-                    Authorization: `${localStorage.getItem("token")}`
-                },
-            })
-            if(log.ok){
-             localStorage.removeItem("token")
-             alert("Logout successfull..!!")
-              localStorage.removeItem("username")
-              window.open("index.html");
-            }
-        }
-        logoutfun()
-    })
-
-  
-    
+   
 </script>
-
